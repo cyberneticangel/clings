@@ -12,11 +12,12 @@
 //     AddressSanitizer and UndefinedBehaviorSanitizer. Those tools catch many
 //     classic C bugs (reading out of bounds, leaking memory, ...) that would
 //     otherwise silently "work" until they didn't.
-//   * When an exercise passes, delete the `I AM NOT DONE` line to move on.
+//   * When an exercise passes, press `n` in watch mode to move on. (Or
+//     delete the `I AM NOT DONE` line yourself, which does the same thing.)
 //   * Stuck? Press `h` in watch mode, or run `./clings hint <name>`.
 //
-// This exercise already compiles and passes! Read through it, then delete the
-// line below to continue.
+// This exercise already compiles and passes! Read through it, then press `n`
+// (or delete the line below) to continue.
 
 // I AM NOT DONE
 

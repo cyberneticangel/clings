@@ -5,7 +5,8 @@
 # usage: ./clings [command] [exercise]
 #
 #   watch            (default) work through the exercises in order, re-checking
-#                    every time you save a file
+#                    every time you save a file. Keys: [n] next (once the
+#                    exercise passes), [h] hint, [l] list, [r] re-run, [q] quit
 #   run <name>       compile and run a single exercise
 #   hint <name>      show the hint for an exercise
 #   list             show every exercise and whether it is done
@@ -71,6 +72,16 @@ elif command -v gtimeout >/dev/null 2>&1; then
 else
     TIMEOUT=()
 fi
+
+# Deletes the marker line(s) from an exercise. Rewrites the file in place
+# (instead of `sed -i`, which differs between GNU and BSD/macOS).
+remove_marker() {
+    local tmp
+    tmp=$(mktemp) || return 1
+    grep -vE "$MARKER_RE" "$1" >"$tmp"
+    cat "$tmp" >"$1"
+    rm -f "$tmp"
+}
 
 # ---- compile & run -------------------------------------------------------
 
@@ -159,7 +170,7 @@ cmd_run() {
     path=$(path_of "$1") || exit 1
     if run_exercise "$path"; then
         echo "${GREEN}${BOLD}Successfully ran $path!${RESET}"
-        has_marker "$path" && echo "${DIM}(remember to delete the '$MARKER' line to mark it done)${RESET}"
+        has_marker "$path" && echo "${DIM}(to mark it done, press n in watch mode or delete the '// $MARKER' line)${RESET}"
         exit 0
     fi
     exit 1
@@ -188,7 +199,7 @@ cmd_verify() {
             progress_bar "$i"
             echo "${YELLOW}Next up: ${PATHS[$i]}${RESET}"
             if run_exercise "${PATHS[$i]}"; then
-                echo "${GREEN}It passes!${RESET} Delete the '// $MARKER' line to mark it done."
+                echo "${GREEN}It passes!${RESET} Press n in watch mode (or delete the '// $MARKER' line) to mark it done."
             fi
             exit 1
         fi
@@ -232,7 +243,7 @@ EOF
 }
 
 cmd_watch() {
-    local i path last key
+    local i path key passed
 
     while true; do
         clear
@@ -247,19 +258,33 @@ cmd_watch() {
 
         echo "${BOLD}Current exercise: ${path}${RESET}"
         echo
+        passed=0
         if run_exercise "$path"; then
+            passed=1
             echo
             echo "${GREEN}${BOLD}Exercise $path compiles and all checks pass!${RESET}"
             echo "The code is ready. When you've read it through and understand it,"
-            echo "delete the line ${BOLD}// $MARKER${RESET} to move on."
+            echo "press ${BOLD}n${RESET} for the next exercise (or delete the ${BOLD}// $MARKER${RESET} line)."
         fi
         echo
         progress_bar "$i"
-        echo "${DIM}[h] hint  [l] list  [r] re-run  [q] quit  (saving a file re-runs automatically)${RESET}"
+        if ((passed)); then
+            echo "${DIM}[n] next  [h] hint  [l] list  [r] re-run  [q] quit${RESET}"
+        else
+            echo "${DIM}[h] hint  [l] list  [r] re-run  [q] quit  (saving a file re-runs automatically)${RESET}"
+        fi
 
         while true; do
             if read -r -s -n 1 -t 1 key; then
                 case "$key" in
+                    n)
+                        if ((passed)); then
+                            remove_marker "$path"
+                            break
+                        fi
+                        echo
+                        echo "${YELLOW}Not yet! $(name_of "$path") has to compile and pass its checks first.${RESET}"
+                        ;;
                     h) echo; show_hint "$(name_of "$path")" ;;
                     l) echo; cmd_list ;;
                     r) break ;;
@@ -271,7 +296,8 @@ cmd_watch() {
     done
 }
 
-usage() { sed -n '3,15p' "$0" | sed 's/^# \{0,1\}//'; }
+# Prints the comment block at the top of this file.
+usage() { sed -n '3,/^[^#]/p' "$0" | grep '^#' | sed 's/^# \{0,1\}//'; }
 
 case "${1:-watch}" in
     watch)  cmd_watch ;;

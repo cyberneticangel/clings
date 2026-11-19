@@ -49,9 +49,11 @@ Then open the exercise it names in your editor and start fixing.
 - Checks like `CHECK_INT(actual, expected)` and `CHECK_STR(...)` come from
   [`include/clings.h`](include/clings.h). When one fails you see the
   expected and actual values.
-- Once an exercise compiles and every check passes, **delete the
-  `// I AM NOT DONE` line** to move on. This gives you a moment to re-read
-  the code and make sure you understand why it works.
+- Once an exercise compiles and every check passes, press **`n`** in watch
+  mode to move on. clings then deletes the exercise's `// I AM NOT DONE`
+  line for you (you can also delete it yourself). Moving on is manual so you
+  have a moment to re-read the code and make sure you understand why it
+  works.
 
 ### The compiler is strict on purpose
 
@@ -87,8 +89,8 @@ the first line that points to *your* file and line number.
 | `./clings verify`        | Check everything in order and stop at the first unfinished one |
 | `./clings next`          | Print the next unfinished exercise                      |
 
-In watch mode, press `h` for a hint, `l` for the list, `r` to re-run, and
-`q` to quit.
+In watch mode, press `n` for the next exercise (once the current one passes),
+`h` for a hint, `l` for the list, `r` to re-run, and `q` to quit.
 
 Set `CC=clang ./clings` to use a different compiler.
 
