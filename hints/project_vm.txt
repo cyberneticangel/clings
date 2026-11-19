@@ -1,0 +1,15 @@
+Start with vm_init (memset the struct to 0) and vm_free (free out, reset).
+Write push/pop helpers that return VM_ERR_STACK_OVERFLOW/UNDERFLOW.
+A TRY(expr) macro that returns early on error keeps vm_run readable:
+    #define TRY(e) do { VmError err_ = (e); if (err_ != VM_OK) return err_; } while (0)
+vm_run loop:
+    1. if pc >= len -> VM_ERR_NO_HALT
+    2. if ++steps > max_steps -> VM_ERR_STEP_LIMIT
+    3. fetch prog[pc++] and switch on its opcode.
+Binary ops: pop b first, then a. Check b == 0 for DIV/MOD.
+Jumps: validate 0 <= arg < len before jumping. JZ pops, jumps only on 0.
+LOAD/STORE: validate 0 <= arg < NUM_SLOTS.
+PRINT: snprintf the number + '\n' into a small buffer, then append it to
+vm->out, growing with realloc like the StrBuf project.
+Note: in OP_SWAP and the error tests, follow the spec exactly. The tests
+check which error you report.

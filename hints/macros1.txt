@@ -1,0 +1,6 @@
+Parenthesize everything:
+    #define SQUARE(x) ((x) * (x))
+    #define ADD(a, b) ((a) + (b))
+ARRAY_LEN is the sizeof trick from arrays1:
+    #define ARRAY_LEN(arr) (sizeof(arr) / sizeof((arr)[0]))
+(It only works on real arrays, not on pointers!)

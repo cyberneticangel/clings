@@ -1,0 +1,2 @@
+sizeof gives a size in bytes: char is 1, int is 4, double is 8 on common
+machines. 'A' + 2 is the letter two after A. And pi * 2 = 6.28318.

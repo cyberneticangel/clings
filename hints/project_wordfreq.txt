@@ -1,0 +1,11 @@
+map_new: malloc the Map, calloc(buckets, sizeof(Entry *)) for the buckets
+(calloc gives NULL = empty list in every bucket).
+map_get: bucket = hash(key) % bucket_count; walk that list comparing with
+strcmp; return &e->value when found.
+map_increment: use map_get; if missing, malloc an Entry and a copy of the key
+(strlen + 1!), then push it on the front of its bucket's list. size++.
+count_words: collect letters (lower-cased) into a small char buffer; when you
+hit a non-letter (or the final '\0'), and the buffer isn't empty, terminate
+it and map_increment it.
+map_free: free every entry's key, then the entry (save next first!), then
+the bucket array, then the map.

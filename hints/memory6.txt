@@ -1,0 +1,2 @@
+Replace malloc(26 * sizeof(*counts)) with calloc(26, sizeof(*counts)) so
+every count starts at 0.

@@ -1,0 +1,7 @@
+load_employees: read and ignore the first line with fgets. Then for each
+line: sscanf(line, "%31[^,],%31[^,],%ld", e.name, e.dept, &e.salary) == 3
+means it parsed; copy e into out[n++].
+summarize: for each employee, search out[0..d) for its department with
+strcmp. If not found, start a new entry (strcpy the name, zero the counters).
+Then update count and total.
+write_report: fprintf(out, "%s: %d employees, average %ld\n", ...)

@@ -1,0 +1,2 @@
+Make double_it return `int` and `return x * 2;`, then in main write
+    value = double_it(value);

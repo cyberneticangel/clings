@@ -1,0 +1,6 @@
+0xF0 & 0x3C = 1111 0000 & 0011 1100 = 0011 0000 = 0x30.
+0xF0 | 0x0F = 0xFF.  5 << 3 = 5 * 8.
+set:    value | (1u << bit)
+clear:  value & ~(1u << bit)
+toggle: value ^ (1u << bit)
+test:   (value >> bit) & 1u     (or: (value & (1u << bit)) != 0)

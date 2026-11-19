@@ -1,0 +1,3 @@
+"%s is %d years old", "pi is about %.2f", "%d in hex is %x" (pass 255 twice!),
+"battery: %d%%".
+tiny has room for 5 characters plus '\0': "trunc". "truncated" is 9 chars long.

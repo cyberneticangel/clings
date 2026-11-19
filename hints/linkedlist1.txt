@@ -1,0 +1,4 @@
+push_front: malloc a Node, set its value, set node->next = head, return node.
+length: walk `for (const Node *cur = head; cur != NULL; cur = cur->next)`.
+get: follow `next` index times, then return the value.
+free: save `Node *next = head->next` BEFORE free(head), then move on.

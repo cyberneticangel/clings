@@ -1,0 +1,3 @@
+Compare a and b with `if (a > b)`, and return the right one. Make sure every
+path through the function ends in a `return`. Falling off the end of a
+non-void function is a bug (the compiler warns about it).

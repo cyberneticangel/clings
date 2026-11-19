@@ -1,0 +1,8 @@
+trim: advance s while isspace(*s). Then point `end` at s + strlen(s) and
+move it back while end[-1] is whitespace; write *end = '\0'; return s.
+split: parts[0] = s. Walk a pointer p; at each separator write '\0' and
+store p + 1 as the next part, stopping once you have max_parts.
+reverse_range: swap *begin and *(end-1), move both inward, until they meet.
+rotate_left: k %= n; reverse [0,k), reverse [k,n), reverse [0,n).
+dedupe: a "write" pointer and a "read" pointer. Copy *read to *write only
+when it differs from the last value written.

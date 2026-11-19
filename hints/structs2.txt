@@ -1,0 +1,2 @@
+Make the parameter `Point *p`, use p->x and p->y inside, and call it with
+move_by(&p, ...).

@@ -1,0 +1,9 @@
+Structure it as:
+  config_parse: fgets each line, count line numbers, trim it, skip blank/#.
+  strchr(line, '=') finds the separator; NULL means syntax error.
+  Write '\0' over the '=' and trim both halves to get key and value.
+  A helper `apply_setting(cfg, key, value)` that returns a ConfigError keeps
+  config_parse short.
+port: parse_int + range check. verbose: strcmp with "true"/"false".
+name: strlen(value) must be < NAME_MAX before you strcpy.
+config_error_str: a switch over the enum returning string literals.

@@ -1,0 +1,2 @@
+The compiler says 'x' is undeclared. A declaration names a type first:
+    int x = 5;

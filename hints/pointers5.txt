@@ -1,0 +1,7 @@
+New version:
+    void make_greeting(char *out, size_t out_size, const char *name) {
+        snprintf(out, out_size, "Hello, %s!", name);
+    }
+In main:
+    char g[64];
+    make_greeting(g, sizeof(g), "World");

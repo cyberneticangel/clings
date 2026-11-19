@@ -1,0 +1,3 @@
+apply: return op(a, b);
+fold: start acc at initial, loop over arr doing acc = op(acc, arr[i]).
+ops: {add, sub, mul}

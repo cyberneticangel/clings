@@ -1,0 +1,3 @@
+oldest: keep a pointer `best = &people[0]`, loop from 1, and replace it
+whenever people[i].age > best->age.
+count_in_city: compare people[i].address.city with city using strcmp.

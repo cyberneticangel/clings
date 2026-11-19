@@ -1,0 +1,4 @@
+Declare `char *line = NULL;` before the first malloc so it's safe to free on
+every path (free(NULL) does nothing). Add a `fail:` label at the end that
+frees line and scores and returns an error variable; replace each early
+`return ERR_...` with setting that variable and `goto fail;`.

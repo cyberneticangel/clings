@@ -1,0 +1,6 @@
+FizzBuzz: check divisibility by 15 FIRST (see if2 about ordering).
+Collatz: a while (n != 1) loop. Update peak after computing the new n.
+Primes: for each i from 2..99, assume prime, then loop d from 2 while
+d * d <= i; if i % d == 0, it's not prime: break.
+Perfect: for each i, sum every d < i with i % d == 0, compare to i.
+(The simple approach does ~50 million divisions; that's fine.)

@@ -1,0 +1,2 @@
+An array of 6 elements has valid indices 0 through 5. The loop condition
+`i <= 6` also writes squares[6]. Use `i < 6`.

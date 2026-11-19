@@ -1,0 +1,4 @@
+find: loop over the array; when arr[i] == target return &arr[i];
+after the loop, return NULL.
+In main, only dereference when missing != NULL, otherwise use -1:
+    int found_value = missing != NULL ? *missing : -1;

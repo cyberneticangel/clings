@@ -1,0 +1,2 @@
+Add the `static` keyword: `static int id = 0;`
+The initializer runs only once, before the program starts.

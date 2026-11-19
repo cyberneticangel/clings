@@ -1,0 +1,2 @@
+malloc(n) allocates n BYTES, but you need room for n ints. Use
+malloc(n * sizeof(*arr)), where sizeof(*arr) is the size of one element.

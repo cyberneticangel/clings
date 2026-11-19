@@ -1,0 +1,4 @@
+factorial(0) calls factorial(-1), which calls factorial(-2)... and never hits
+n == 1. Use `n <= 1` instead.
+fib(1) calls fib(0) and fib(-1), and fib(-1) never reaches 0. You need a base
+case for 1 as well, e.g. `if (n < 2) return n;`.

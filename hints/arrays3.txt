@@ -1,0 +1,6 @@
+Change the signature to
+    int sum(const int arr[], size_t len)
+and loop `for (size_t i = 0; i < len; i++)`.
+In main, where the real array is visible, sizeof still works, so you can
+call `sum(small, sizeof(small) / sizeof(small[0]))`, or just pass 3 and 8.
+(`const` promises the function won't modify the array. Good habit!)

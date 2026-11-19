@@ -1,0 +1,2 @@
+Change VERSION_MAJOR to 2, add `#define FEATURE_TURBO` (no value needed:
+#ifdef only checks whether it's defined), and make STR stringify: #x

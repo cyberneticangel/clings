@@ -1,0 +1,2 @@
+Use two nested loops over rows r and columns c: out[c][r] = in[r][c];
+For trace, one loop is enough: the diagonal elements are m[i][i].

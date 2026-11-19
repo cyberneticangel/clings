@@ -1,0 +1,7 @@
+Fahrenheit: celsius * 9 / 5 is integer math (37*9/5 = 66). Use 9.0.
+Miles: km / 1.609344. Whole miles: (int)marathon_miles.
+File size: 4 * 1024 * 1024 * 1024 is computed in `int` and overflows
+before it's ever stored! Use a 64-bit type AND make the arithmetic 64-bit,
+e.g. uint64_t file_bytes = 4ULL * 1024 * 1024 * 1024;
+MiB: photo_bytes / (1024.0 * 1024.0).
+Digits: digit_char - '0' gives 7; '0' + 8 gives '8'.

@@ -1,0 +1,5 @@
+Percentages with integers: multiply first, divide last, e.g.
+    int tax = subtotal * 8 / 100;
+(subtotal / 100 * 8 would throw away cents too early.)
+`%` gives you the remainder for leftover: total % 3.
+In the dessert part, don't re-declare with `int`. Just assign: subtotal = ...

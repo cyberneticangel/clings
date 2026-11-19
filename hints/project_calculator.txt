@@ -1,0 +1,8 @@
+tokenize: walk a pointer p through the input. Skip spaces. On a digit,
+build the number with value = value * 10 + (*p - '0') while digits continue.
+Anything else is an operator token.
+evaluate: `long stack[STACK_MAX]; size_t top = 0;`
+push: stack[top++] = x;   pop: x = stack[--top];
+For an operator, check top >= 2 first. Pop b FIRST, then a (order matters
+for - and /). Switch on t->kind, and on t->op for the operator.
+At the end, top must be exactly 1.

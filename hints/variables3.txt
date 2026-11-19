@@ -1,0 +1,3 @@
+`answer` disappears at the closing brace of the inner block. Move its
+declaration out to main's scope (before the inner block) so it's still
+visible at the CHECK.

@@ -1,0 +1,6 @@
+struct Rect {
+    double width;
+    double height;
+};
+Don't forget the semicolon after the closing brace! area returns
+r.width * r.height.

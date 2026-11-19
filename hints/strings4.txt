@@ -1,0 +1,1 @@
+Change `char *word = "hello";` to `char word[] = "hello";` (same for other).

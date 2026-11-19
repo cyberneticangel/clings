@@ -1,0 +1,3 @@
+`out` points at the caller's `best`. Assign *out = &arr[0] first, then for
+each element, if arr[i] > **out (the value currently pointed at), set
+*out = &arr[i]. Use > rather than >= so you keep the first largest one.

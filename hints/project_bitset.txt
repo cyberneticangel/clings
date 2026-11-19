@@ -1,0 +1,7 @@
+add:      s->words[v / 64] |= 1ULL << (v % 64);
+remove:   s->words[v / 64] &= ~(1ULL << (v % 64));
+contains: (s->words[v / 64] >> (v % 64)) & 1
+count: popcount each of the four words (bits2), or use w &= w - 1 in a loop.
+union/intersection: combine the words pairwise with | and &.
+Sieve: add 2..255, then for p = 2; p * p < 256; p++, if p is still in the
+set, remove p*p, p*p + p, p*p + 2p, ...

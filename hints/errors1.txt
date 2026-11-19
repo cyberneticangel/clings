@@ -1,0 +1,7 @@
+    char *end;
+    errno = 0;
+    long v = strtol(str, &end, 10);
+    if (end == str || *end != '\0' || errno == ERANGE) return false;
+    if (v < INT_MIN || v > INT_MAX) return false;
+    *out = (int)v;
+    return true;

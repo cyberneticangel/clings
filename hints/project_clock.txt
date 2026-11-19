@@ -1,0 +1,6 @@
+hours = total / 3600; minutes = total % 3600 / 60; seconds = total % 60.
+Clock: (now + 5) % 24.
+Coins: quarters = change / 25; change %= 25; then dimes, nickels, pennies.
+Digits of 4096: 4096 / 1000 = 4, 4096 / 100 % 10 = 0, 4096 / 10 % 10 = 9,
+4096 % 10 = 6.
+valid: digit_sum % 2 == 1 && code > 1000

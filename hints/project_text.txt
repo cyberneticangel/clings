@@ -1,0 +1,8 @@
+word_count: track whether you're currently inside a word (a bool). Count
+when you go from "not in a word" to a non-space character.
+capitalize_words: same idea. A `start` flag that's true after whitespace.
+is_palindrome: two indices, i from the front and j from the back. Skip
+non-letters on either side; compare tolower() of both; move inward.
+Watch out for len == 0 (len - 1 underflows for size_t!).
+caesar: normalize the shift into 0..25 with ((shift % 26) + 26) % 26, then
+for letters: 'a' + (c - 'a' + shift) % 26 (same with 'A').

@@ -1,0 +1,7 @@
+Define the handlers BEFORE main (or add prototypes), each as
+    void name(void *ctx, int payload)
+Inside, convert ctx to the real type: `int *count = ctx;` then (*count)++.
+If a parameter is unused, write `(void)payload;` to silence the warning.
+bus_subscribe: if count < MAX_HANDLERS, fill bus->subs[bus->count++].
+bus_emit: loop over subs; when subs[i].type == type, call
+subs[i].fn(subs[i].ctx, payload) and count it.

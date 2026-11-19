@@ -1,0 +1,4 @@
+make_circle: s.circle.radius = radius;
+make_rect: declare a Shape s, set s.kind = SHAPE_RECT and both s.rect fields.
+shape_area: switch (s.kind) { case SHAPE_CIRCLE: return PI * r * r; ... }
+Only read the union member that matches the tag!

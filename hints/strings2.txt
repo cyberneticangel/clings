@@ -1,0 +1,2 @@
+Replace `answer == "yes"` with `strcmp(answer, "yes") == 0`.
+Replace `a < b` with `strcmp(a, b) < 0`.

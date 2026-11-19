@@ -1,0 +1,4 @@
+square returns a value, so its return type can't be void. It should be int.
+half is called with 2.5, but its parameter is an int. The 2.5 gets
+truncated to 2. Make the parameter a double.
+bump doesn't return anything, so make it `void bump(void)`.

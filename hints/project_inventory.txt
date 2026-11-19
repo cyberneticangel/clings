@@ -1,0 +1,6 @@
+Write inventory_find first, then use it inside inventory_add.
+Before adding a new item, check inv->count < MAX_ITEMS and
+strlen(name) < NAME_LEN (it needs room for the '\0'!).
+To append: `Item *item = &inv->items[inv->count++];` then fill its fields
+(strcpy is safe here because you checked the length).
+For the value, multiply in `long` to be safe from overflow.

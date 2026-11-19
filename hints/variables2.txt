@@ -1,0 +1,2 @@
+Statements run top to bottom. `sum` is computed once, when a is 3 and b is 4,
+and doesn't update later. `product` uses the new a (10) and the old b (4).

@@ -1,0 +1,2 @@
+A score of 95 is also >= 60, so the first branch catches it. Check the
+highest threshold first and work your way down.

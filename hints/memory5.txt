@@ -1,0 +1,5 @@
+vec_push: if v->len == v->cap, compute a new capacity (4 if it was 0,
+otherwise double it), then realloc(v->data, new_cap * sizeof(int)).
+realloc(NULL, size) behaves just like malloc, so the first push works too.
+Check for NULL before overwriting v->data! Then: v->data[v->len++] = value;
+vec_free: free(v->data) and reset all three fields.

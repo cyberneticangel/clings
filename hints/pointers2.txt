@@ -1,0 +1,4 @@
+swap needs `int *a, int *b` parameters, and must use *a and *b inside.
+Call it with swap(&a, &b).
+In min_max, `min = arr[0]` changes the local pointer. Write through it with
+`*min = arr[0]` (and compare against *min). Call it with &lo, &hi.

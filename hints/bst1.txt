@@ -1,0 +1,7 @@
+insert: if root is NULL, malloc a new node (children NULL) and return it.
+Otherwise recurse: root->left = tree_insert(root->left, value) for smaller
+values, right for larger, and return root.
+contains: compare and go left or right until you find it or hit NULL.
+height: 0 for NULL, else 1 + the larger of the two children's heights.
+in_order: recurse left, then out[(*n)++] = root->value, then recurse right.
+free: free both children first, then the node (post-order).

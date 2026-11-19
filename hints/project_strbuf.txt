@@ -1,0 +1,9 @@
+sb_reserve: needed = len + extra + 1. If cap < needed, pick a new cap
+(start at 16, keep doubling until big enough) and realloc. realloc(NULL, n)
+works like malloc, so the empty {0} StrBuf needs no special case.
+sb_append: reserve strlen(s), memcpy including the '\0', bump len.
+sb_append_int: snprintf into a small char tmp[32], then sb_append(tmp).
+split_words: a growable char** array (like memory5's Vec). For each word,
+find its start and end, malloc(len + 1), memcpy, add the '\0'.
+Return a (possibly empty) malloc'd array even when there are no words,
+so free_words can always free it.

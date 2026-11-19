@@ -1,0 +1,4 @@
+An unsigned char holds 0..255. Overflowing wraps around modulo 256:
+250 + 10 = 260, and 260 - 256 = 4.
+For the unsigned int, the wrap happens modulo 4294967296 (2^32):
+3 - 5 = -2, so the result is 4294967296 - 2.

@@ -1,0 +1,9 @@
+mean: sum into a long, then return (double)sum / n.
+min/max: start with scores[0] and compare against the rest.
+Insertion sort: for i from 1..n-1, take key = scores[i], shift larger
+elements one slot right while scores[j-1] > key, then drop key into the gap.
+Careful with size_t: it's unsigned, so `j >= 0` is always true. Loop on
+`j > 0` and use j - 1.
+median: n odd -> scores[n/2]; n even -> average of scores[n/2-1] and
+scores[n/2] (divide by 2.0!).
+histogram: bucket = score / 10, but clamp 10 down to 9.

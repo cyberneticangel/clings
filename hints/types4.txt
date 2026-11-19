@@ -1,0 +1,2 @@
+int32_t only goes up to about 2.1 billion. The population needs 64 bits:
+uint64_t (or int64_t).

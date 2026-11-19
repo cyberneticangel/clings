@@ -1,0 +1,3 @@
+The error says you're assigning to a read-only variable. Which variable gets
+reassigned? Remove `const` from that one. For good measure, add `const` to
+the one that never changes (it isn't required to compile, but it's good habit).

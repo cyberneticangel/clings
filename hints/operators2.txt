@@ -1,0 +1,3 @@
+b = a++ copies a's old value (5) into b, then a becomes 6.
+c = ++a bumps a to 7 first, then copies it.
+d = a-- copies 7, then a goes back to 6.

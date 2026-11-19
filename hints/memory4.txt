@@ -1,0 +1,3 @@
+my_strdup needs strlen(s) + 1 bytes for the terminator.
+concat: allocate strlen(a) + strlen(b) + 1 bytes, then copy a in, then copy
+b right after it (strcpy + strcat, or memcpy at an offset).

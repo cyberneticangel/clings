@@ -1,0 +1,2 @@
+fprintf(f, "apples %d\n", 3); and so on for the other two lines.
+At the end of main, call fclose(f) before returning.

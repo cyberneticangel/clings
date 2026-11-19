@@ -1,0 +1,2 @@
+The compiler complains about an "implicit declaration of function 'printf'".
+Add `#include <stdio.h>` near the top of the file, before main.

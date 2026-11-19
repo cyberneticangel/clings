@@ -1,0 +1,7 @@
+reverse: keep `prev = NULL`. For each node: save next, point node->next at
+prev, move prev to node, move to next. At the end prev is the new head.
+remove:
+    for (Node **link = head; *link != NULL; link = &(*link)->next) {
+        if ((*link)->value == value) { Node *dead = *link;
+            *link = dead->next; free(dead); return true; }
+    }

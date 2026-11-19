@@ -1,0 +1,2 @@
+Every pointer returned by repeat() needs a free(): free tmp inside the loop
+after you're done with it, and free a and b before returning from main.

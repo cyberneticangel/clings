@@ -1,0 +1,10 @@
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+CLAMP can reuse them: MIN(MAX((x), (lo)), (hi))
+SWAP: do { type tmp_ = (a); (a) = (b); (b) = tmp_; } while (0)
+(Without do/while(0), the `if (...) SWAP(...); else` breaks: the `;` after
+a { } block ends the if, leaving a dangling else.)
+EXPECT_EQ: do { if ((a) != (b)) record_failure(#a " == " #b, __LINE__); } while (0)
+Adjacent string literals are concatenated by the compiler.
+X macro: #define AS_STRING(name) #name,
+         static const char *color_names[] = { COLOR_LIST(AS_STRING) };
+and add X(YELLOW) to COLOR_LIST.

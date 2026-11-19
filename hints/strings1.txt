@@ -1,0 +1,5 @@
+"hello" needs 6 bytes: five letters plus '\0'. Make greeting[6].
+For name, initializing char-by-char doesn't add a terminator automatically.
+Make it name[4] (an initializer list shorter than the array zero-fills the
+rest, so the 4th byte becomes '\0'), or write the '\0' yourself.
+"clings" has 6 letters; sizeof includes the terminator.

@@ -1,0 +1,4 @@
+Without `break`, case 2 sets days = 28, then falls into the next cases and
+overwrites it with 30, then 31. Add `break;` at the end of each group of
+cases. Several `case` labels stacked with nothing between them is fine. That
+kind of fall-through is intentional and allowed.

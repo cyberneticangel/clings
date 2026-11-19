@@ -1,0 +1,4 @@
+`low < x < high` is parsed as `(low < x) < high`, which compares 0 or 1 to high!
+Write two comparisons joined with &&.
+
+`n = 42` *assigns* 42 to n (and the value 42 is truthy). Comparison is `==`.

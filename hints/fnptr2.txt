@@ -1,0 +1,4 @@
+A neat overflow-safe idiom: return (*x > *y) - (*x < *y);
+That gives 1, 0 or -1.
+For people, convert the void pointers: const Person *x = a; then compare
+x->age (same idiom) or strcmp(x->name, y->name).

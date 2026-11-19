@@ -1,0 +1,5 @@
+Two problems:
+1. main reads b.values[2] after buffer_free. Move that CHECK above the free.
+2. The second buffer_free frees the same pointer again. Make buffer_free set
+   b->values = NULL and b->len = 0 after freeing; then freeing again is
+   free(NULL), which is harmless.

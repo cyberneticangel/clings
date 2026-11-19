@@ -1,0 +1,4 @@
+my_strlen: start a counter at 0 and loop while s[n] != '\0'.
+my_strcpy: copy characters one by one, and don't forget to copy the final
+'\0' too (a do/while, or copying it after the loop, works).
+count_char: loop until '\0', incrementing a counter when s[i] == c.

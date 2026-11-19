@@ -1,0 +1,3 @@
+`total / count` is int / int, so the result is truncated *before* it is
+turned into a double. Cast one side first:
+    return (double)total / count;

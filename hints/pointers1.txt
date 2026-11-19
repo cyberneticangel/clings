@@ -1,0 +1,2 @@
+`int *p = x;` tries to use the value 10 as an address. You want x's address:
+`int *p = &x;`. After that, *p and x are two names for the same int.

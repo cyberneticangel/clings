@@ -1,0 +1,3 @@
+Use `if (i % 3 == 0) continue;` before adding.
+For the second one: `if (i % 7 == 0 && i % 11 == 0) { found = i; break; }`
+(The loop with an empty condition `for (...; ; ...)` runs forever until break.)

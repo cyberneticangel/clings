@@ -1,0 +1,2 @@
+For n == 0 the while condition is false immediately, so digits stays 0.
+Turn the loop into a do { ... } while (n != 0); so the body runs at least once.
