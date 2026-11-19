@@ -58,7 +58,10 @@ path_of() {
     return 1
 }
 
-has_marker() { grep -q "$MARKER" "$1" "$(dirname "$1")"/*.h 2>/dev/null; }
+# Only a line that is exactly the marker counts, so exercises can still
+# mention the phrase in their instructions.
+MARKER_RE="^[[:space:]]*//[[:space:]]*${MARKER}[[:space:]]*\$"
+has_marker() { grep -qE "$MARKER_RE" "$1" "$(dirname "$1")"/*.h 2>/dev/null; }
 
 # Run with a time limit, if a `timeout` command is available.
 if command -v timeout >/dev/null 2>&1; then
