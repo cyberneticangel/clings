@@ -89,8 +89,20 @@ the first line that points to *your* file and line number.
 | `./clings verify`        | Check everything in order and stop at the first unfinished one |
 | `./clings next`          | Print the next unfinished exercise                      |
 
-In watch mode, press `n` for the next exercise (once the current one passes),
-`h` for a hint, `l` for the list, `r` to re-run, and `q` to quit.
+In watch mode:
+
+| Key | Action |
+| --- | ------ |
+| `n` | Next exercise (once the current one passes). When reviewing, step forward |
+| `b` | Back to the previous, already finished exercise, to review or tinker with it |
+| `c` | While reviewing, jump straight back to your current exercise |
+| `h` | Show a hint |
+| `l` | List all exercises |
+| `r` | Re-run the checks |
+| `q` | Quit (your progress is saved in the files themselves) |
+
+If you break a finished exercise while reviewing it, it becomes your current
+exercise again until you fix it.
 
 Set `CC=clang ./clings` to use a different compiler.
 

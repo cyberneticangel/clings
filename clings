@@ -6,7 +6,8 @@
 #
 #   watch            (default) work through the exercises in order, re-checking
 #                    every time you save a file. Keys: [n] next (once the
-#                    exercise passes), [h] hint, [l] list, [r] re-run, [q] quit
+#                    exercise passes), [b] back to a finished exercise,
+#                    [h] hint, [l] list, [r] re-run, [q] quit
 #   run <name>       compile and run a single exercise
 #   hint <name>      show the hint for an exercise
 #   list             show every exercise and whether it is done
@@ -243,47 +244,88 @@ EOF
 }
 
 cmd_watch() {
-    local i path key passed
+    # first:  index of the first unfinished exercise (where you really are)
+    # view:   index being shown; smaller than first while reviewing with [b]
+    local first view=-1 i path key passed reviewing
 
     while true; do
         clear
         mark_watch
-        i=$(first_unfinished)
+        first=$(first_unfinished)
+        # Stepped forward far enough (or an earlier exercise broke): follow
+        # the first unfinished exercise again.
+        ((view >= first)) && view=-1
+        if ((view >= 0)); then i=$view; reviewing=1; else i=$first; reviewing=0; fi
+
         if ((i == TOTAL)); then
             progress_bar "$TOTAL"
             finished_banner
-            exit 0
+            echo "${DIM}[b] back  [q] quit${RESET}"
+            while true; do
+                read -r -s -n 1 key || exit 0
+                case "$key" in
+                    b) view=$((TOTAL - 1)); break ;;
+                    q) exit 0 ;;
+                esac
+            done
+            continue
         fi
         path=${PATHS[$i]}
 
-        echo "${BOLD}Current exercise: ${path}${RESET}"
+        if ((reviewing)); then
+            echo "${BOLD}Reviewing exercise $((i + 1))/$TOTAL: ${path}${RESET} ${GREEN}(done)${RESET}"
+        else
+            echo "${BOLD}Current exercise $((i + 1))/$TOTAL: ${path}${RESET}"
+        fi
         echo
         passed=0
         if run_exercise "$path"; then
             passed=1
-            echo
-            echo "${GREEN}${BOLD}Exercise $path compiles and all checks pass!${RESET}"
-            echo "The code is ready. When you've read it through and understand it,"
-            echo "press ${BOLD}n${RESET} for the next exercise (or delete the ${BOLD}// $MARKER${RESET} line)."
+            if ((!reviewing)); then
+                echo
+                echo "${GREEN}${BOLD}Exercise $path compiles and all checks pass!${RESET}"
+                echo "The code is ready. When you've read it through and understand it,"
+                echo "press ${BOLD}n${RESET} for the next exercise (or delete the ${BOLD}// $MARKER${RESET} line)."
+            fi
         fi
         echo
-        progress_bar "$i"
-        if ((passed)); then
-            echo "${DIM}[n] next  [h] hint  [l] list  [r] re-run  [q] quit${RESET}"
+        progress_bar "$first"
+        if ((reviewing)); then
+            echo "${DIM}[b] back  [n] forward  [c] back to current  [h] hint  [l] list  [r] re-run  [q] quit${RESET}"
+        elif ((passed)); then
+            echo "${DIM}[n] next  [b] back  [h] hint  [l] list  [r] re-run  [q] quit${RESET}"
         else
-            echo "${DIM}[h] hint  [l] list  [r] re-run  [q] quit  (saving a file re-runs automatically)${RESET}"
+            echo "${DIM}[b] back  [h] hint  [l] list  [r] re-run  [q] quit  (saving a file re-runs automatically)${RESET}"
         fi
 
         while true; do
             if read -r -s -n 1 -t 1 key; then
                 case "$key" in
                     n)
+                        if ((reviewing)); then
+                            view=$((i + 1))
+                            break
+                        fi
                         if ((passed)); then
                             remove_marker "$path"
                             break
                         fi
                         echo
                         echo "${YELLOW}Not yet! $(name_of "$path") has to compile and pass its checks first.${RESET}"
+                        ;;
+                    b)
+                        if ((i > 0)); then
+                            view=$((i - 1))
+                            break
+                        fi
+                        echo
+                        echo "${YELLOW}This is the first exercise. There's nothing before it.${RESET}"
+                        ;;
+                    c)
+                        if ((reviewing)); then
+                            view=-1
+                            break
+                        fi
                         ;;
                     h) echo; show_hint "$(name_of "$path")" ;;
                     l) echo; cmd_list ;;
